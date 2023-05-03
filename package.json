@@ -1,0 +1,23 @@
+{
+  "name": "evalutions-management",
+  "version": "1.0.0",
+  "description": "Aplicação de gerenciamento de avaliações - controle de qualidade de atendimentos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "qualidade",
+    "atendimento",
+    "gerenciamento",
+    "management",
+    "evalutions",
+    "avaliacoes"
+  ],
+  "author": "Beatriz Medeiros",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
