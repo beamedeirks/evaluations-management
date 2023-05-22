@@ -4,9 +4,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser')
 
 const routerAttendants = require('./routes/attendants');
-//const routerAttendances = require('./routes/attendances');
+const routerAttendances = require('./routes/attendances');
 const routerEvaluators = require('./routes/evaluators');
 //const routerTypesOfAttendances = require('./routes/typesOfAttendances');
+const routerUsers = require('./routes/users');
 
 //monitorar toda a execução e retornar um log no terminal
 app.use(morgan('dev'));
@@ -28,9 +29,10 @@ app.use((req, res, next) => {
 })
 
 app.use('/attendants', routerAttendants);
-//app.use('/attendances', routerAttendances);
+app.use('/attendances', routerAttendances);
 app.use('/evaluators', routerEvaluators);
 //app.use('/typesOfAttendances', routerTypesOfAttendances);
+app.use('/users', routerUsers);
 
 //quando não encontrar nenhuma rota
 app.use((req, res, next) =>{

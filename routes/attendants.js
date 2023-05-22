@@ -3,7 +3,7 @@ const router = express.Router();
 const mysql = require('../mysql').pool;
 
 //insere um atendente 
-router.post('/', (req, res, next) => {
+router.post('/', login.required,(req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -62,7 +62,7 @@ router.get('/:idAttendant', (req, res, next) => {
 });
 
 //alterando status do atendente - 1 (active) e 0 (inactive)
-router.patch('/status', (req, res, next) => {
+router.patch('/status', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -86,7 +86,7 @@ router.patch('/status', (req, res, next) => {
 });
 
 //altera o nome do atendente
-router.patch('/', (req, res, next) => {
+router.patch('/', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -110,7 +110,7 @@ router.patch('/', (req, res, next) => {
 });
 
 //exclui atendente - não usado
-router.delete('/', (req, res, next) => {
+router.delete('/', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(

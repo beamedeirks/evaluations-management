@@ -1,9 +1,11 @@
 const express = require('express');
+const login = require('../middleware/login');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 
 //insere um Avaliador 
-router.post('/', (req, res, next) => {
+router.post('/',login.required, (req, res, next) => {
+  console.log(req.user);
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -62,7 +64,7 @@ router.get('/:idEvaluator', (req, res, next) => {
 });
 
 //alterando status do Avaliador - 1 (active) e 0 (inactive)
-router.patch('/status', (req, res, next) => {
+router.patch('/status', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -86,7 +88,7 @@ router.patch('/status', (req, res, next) => {
 });
 
 //altera o nome do Avaliador
-router.patch('/', (req, res, next) => {
+router.patch('/', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -110,7 +112,7 @@ router.patch('/', (req, res, next) => {
 });
 
 //exclui Avaliador - não usado
-router.delete('/', (req, res, next) => {
+router.delete('/', login.required, (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
